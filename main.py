@@ -13,6 +13,7 @@ probability = int(getenv('probability'))
 chatid = int(getenv('chat'))
 seed = randint(1, probability)
 model = getenv('model')
+temperature = float(getenv('temperature', '0.7'))
 
 from ollama import chat
 from ollama import ChatResponse
@@ -26,7 +27,7 @@ async def ask(message: types.Message):
     {
         'role': 'user',
         'content': message.text[5:],
-    }])
+    }], options={'temperature': temperature})
     await message.reply(response['message']['content'].lower())
 
 @dp.message()
@@ -39,7 +40,7 @@ async def message(message: types.Message):
     {
         'role': 'user',
         'content': message.text,
-    }])
+    }], options={'temperature': temperature})
     await message.reply(response['message']['content'].lower())
 
 async def main():

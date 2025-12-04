@@ -32,6 +32,7 @@ async def ask(message: types.Message):
 @dp.message()
 async def message(message: types.Message):
     if message.chat.id != chatid: return
+    if message.text == None: return
     if '@holinimbot' not in message.text:
         if randint(1, probability) != seed: return
     response: ChatResponse = chat(model=model, messages=[

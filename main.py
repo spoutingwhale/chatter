@@ -28,7 +28,13 @@ async def ask(message: types.Message):
         'role': 'user',
         'content': message.text[5:],
     }], options={'temperature': temperature})
-    await message.reply(response['message']['content'].lower())
+    text = response['message']['content'].lower()
+    if len(text) < 2000:
+        await message.reply(text)
+    else:
+        stext = [text[i:i+2000] for i in range(0, len(text), 2000)]
+        for i in stext:
+            await message.reply(i)
 
 @dp.message()
 async def message(message: types.Message):
@@ -41,7 +47,13 @@ async def message(message: types.Message):
         'role': 'user',
         'content': message.text,
     }], options={'temperature': temperature})
-    await message.reply(response['message']['content'].lower())
+    text = response['message']['content'].lower()
+    if len(text) < 2000:
+        await message.reply(text)
+    else:
+        stext = [text[i:i+2000] for i in range(0, len(text), 2000)]
+        for i in stext:
+            await message.reply(i)
 
 async def main():
     await dp.start_polling(Bot(token=getenv('apikey')))

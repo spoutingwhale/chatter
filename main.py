@@ -13,7 +13,7 @@ probability = int(getenv('probability'))
 chatid = int(getenv('chat'))
 seed = randint(1, probability)
 model = getenv('model')
-temperature = float(getenv('temperature', '0.7'))
+temperature = float(getenv('temperature'))
 
 from ollama import chat
 from ollama import ChatResponse

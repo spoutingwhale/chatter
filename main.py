@@ -73,7 +73,7 @@ async def ask(message: types.Message):
 
     prompt = message.text.removeprefix("/ask").strip()
     if not prompt:
-        await message.reply("no prompt 😮)
+        await message.reply("no prompt 😮")
         return
 
     await bot.send_chat_action(message.chat.id, ChatAction.TYPING)

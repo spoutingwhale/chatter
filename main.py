@@ -5,6 +5,7 @@ import re
 from random import randint
 
 from aiogram import Bot, Dispatcher, types
+from aiogram.enums import ChatAction
 from aiogram.filters.command import Command
 from dotenv import load_dotenv
 from ollama import chat
@@ -67,7 +68,7 @@ async def ask(message: types.Message):
         await message.reply("<i>no prompt 😮</i>")
         return
 
-    await bot.send_chat_action(message.chat.id, types.ChatActions.TYPING)
+    await bot.send_chat_action(message.chat.id, ChatAction.TYPING)
     messages = append_user_message(prompt)
     text = await generate_response(messages)
 
@@ -108,7 +109,7 @@ async def message_handler(message: types.Message):
         await message.reply("<i>no prompt 😮</i>")
         return
 
-    await bot.send_chat_action(message.chat.id, types.ChatActions.TYPING)
+    await bot.send_chat_action(message.chat.id, ChatAction.TYPING)
     messages = append_user_message(user_text)
     text = await generate_response(messages)
 

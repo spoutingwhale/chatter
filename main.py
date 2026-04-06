@@ -73,7 +73,7 @@ async def ask(message: types.Message):
 
     prompt = message.text.removeprefix("/ask").strip()
     if not prompt:
-        await message.reply("<i>no prompt 😮</i>")
+        await message.reply("no prompt 😮)
         return
 
     await bot.send_chat_action(message.chat.id, ChatAction.TYPING)
@@ -81,7 +81,7 @@ async def ask(message: types.Message):
     text = await generate_response(messages)
 
     if not text:
-        await message.reply("<i>no response 😮</i>")
+        await message.reply("no response 😮")
         return
 
     append_assistant_message(text)
@@ -114,7 +114,7 @@ async def message_handler(message: types.Message):
         user_text = re.sub(re.escape(mention_text), "", user_text, flags=re.IGNORECASE).strip()
 
     if not user_text:
-        await message.reply("<i>no prompt 😮</i>")
+        await message.reply("no prompt 😮")
         return
 
     await bot.send_chat_action(message.chat.id, ChatAction.TYPING)
@@ -122,7 +122,7 @@ async def message_handler(message: types.Message):
     text = await generate_response(messages)
 
     if not text:
-        await message.reply("<i>no response 😮</i>")
+        await message.reply("no response 😮")
         return
 
     append_assistant_message(text)

@@ -63,7 +63,7 @@ async def clear_context(message: types.Message):
     if message.chat.id != chatid:
         return
     conversation_context.clear()
-    await message.reply("<i>context cleared 🧹</i>")
+    await message.reply("context cleared 🧹")
 
 
 @dp.message(Command(commands=["ask"]))

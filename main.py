@@ -20,7 +20,15 @@ seed = randint(1, probability)
 model = getenv("model")
 temperature = float(getenv("temperature"))
 
-bot = Bot(token=getenv("apikey"))
+proxy = getenv("proxy", None)
+
+if proxy:
+    from aiogram.client.session.aiohttp import AiohttpSession
+    session = AiohttpSession(proxy=proxy)
+    bot = Bot(token=getenv("apikey"), session=session)
+else:
+    bot = Bot(token=getenv("apikey"))
+
 dp = Dispatcher()
 conversation_context: list[dict[str, str]] = []
 bot_username: str | None = None

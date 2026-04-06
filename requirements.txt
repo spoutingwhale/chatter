@@ -1,3 +1,4 @@
+aiohttp-socks
 aiogram
 python-dotenv
 ollama
